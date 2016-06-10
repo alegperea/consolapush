@@ -1,0 +1,38 @@
+{% extends '::backend.html.twig' %}
+{% form_theme edit_form 'CoreBundle:Form:form.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Editar Perfil
+{% endblock %}
+
+{% block contenido %}
+<div class="span12">
+    <div class="well-large">
+        <h1>Editar Perfil</h1>
+        {% include ":includes:flashes.html.twig" %}
+        <form action="{{ path('perfil_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                    <div class="input-group" style="margin-bottom: 10px;">
+                        <label style="width: 200px; padding-right: 20px; float: left; font-weight: bold; text-align:right;">Nombre</label><div style="float:left;">{{ form_widget(edit_form.nombre) }}</div>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 10px;"> 
+                        <label style="width: 200px; padding-right: 20px; float: left; font-weight: bold; text-align:right;">Descripcion</label><div style="float:left;">{{ form_widget(edit_form.descripcion) }}</div>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 10px;">
+                       <label style="width: 200px; padding-right: 20px; float: left; font-weight: bold; text-align:right;">Pagina de Inicio</label><div style="float:left;">{{ form_widget(edit_form.pagina_inicio_default) }}</div>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 10px;">
+                       <label style="width: 200px; padding-right: 20px; float: left; font-weight: bold; text-align:right;">Roles</label><div style="float:left;">{{ form_widget(edit_form.roles) }}</div>
+                    </div>
+                    {{ form_rest(edit_form) }}
+                {% include "CoreBundle:Default:volverGuardar.html.twig" with { 'path' : 'perfil' } %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    texteditor($('#wysiwyg'));
+</script>
+{% endblock %}

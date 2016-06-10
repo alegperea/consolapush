@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="JGM\IncaaBundle\Entity\PeliculasPaises" table="peliculas_paises">
+    <indexes>
+      <index name="pelicula" columns="pelicula"/>
+      <index name="_id_caec" columns="_id_caec"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="pelicula" type="integer" column="pelicula" nullable="false"/>
+    <field name="pais" type="integer" column="pais" nullable="false"/>
+    <field name="orden" type="integer" column="orden" nullable="false"/>
+    <field name="coproduccionPorcentaje" type="decimal" column="coproduccion_porcentaje" precision="5" scale="2" nullable="false"/>
+    <field name="idCaec" type="integer" column="_id_caec" nullable="false"/>
+  </entity>
+</doctrine-mapping>

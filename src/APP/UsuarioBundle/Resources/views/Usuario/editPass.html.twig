@@ -1,0 +1,23 @@
+{% extends '::backend.html.twig' %}
+{% form_theme formulario 'CoreBundle:Form:form_unity.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Editar Contraseña
+{% endblock %}
+
+{% block contenido %}
+<div class="span12">
+    <div class="well-large">
+        {% include ':includes:flashes.html.twig' %}
+        <form class="sky-form" action="{{ path('usuario_update_pass', { 'id': entity.id }) }}" method="post" {{ form_enctype(formulario) }}>
+            <header>Crear Proyecto</header>
+            <fieldset>
+                {{ form_widget(formulario.password) }}
+                {{ form_rest(formulario) }}
+                {% include "CoreBundle:Default:volverGuardar.html.twig" with { 'path' : 'usuario' } %}
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+{% endblock %} 

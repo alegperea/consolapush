@@ -1,0 +1,79 @@
+usuario:
+    pattern:  /
+    defaults: { _controller: "UsuarioBundle:Usuario:index" }
+
+usuario_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "UsuarioBundle:Usuario:show" }
+
+usuario_new:
+    pattern:  /new
+    defaults: { _controller: "UsuarioBundle:Usuario:new" }
+
+usuario_create:
+    pattern:  /create
+    defaults: { _controller: "UsuarioBundle:Usuario:create" }
+    requirements: { _method: post }
+    
+usuario_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "UsuarioBundle:Usuario:edit" }
+
+usuario_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "UsuarioBundle:Usuario:update" }
+    requirements: { _method: post }
+
+usuario_restore:
+    pattern:  /{id}/restore
+    defaults: { _controller: "UsuarioBundle:Usuario:restore" }
+    requirements: { _method: post }
+
+usuario_edit_pass:
+    pattern:  /{id}/editpass
+    defaults: { _controller: "UsuarioBundle:Usuario:editPass" }
+    
+usuario_update_pass:
+    pattern:  /{id}/updatepass
+    defaults: { _controller: "UsuarioBundle:Usuario:updatePass" }
+    requirements: { _method: post }
+    
+usuario_showperfilace:
+    pattern: /showperfil
+    defaults: { _controller: "UsuarioBundle:Usuario:showPerfilAce" }
+    
+usuario_inbox:
+    pattern:  /inbox/
+    defaults: { _controller: "UsuarioBundle:Usuario:inbox" }
+    
+usuario_outbox:
+    pattern:  /outbox/
+    defaults: { _controller: "UsuarioBundle:Usuario:outbox" }
+
+usuario_escribir:
+    pattern:  /escribir/
+    defaults: { _controller: "UsuarioBundle:Usuario:escribir" }
+
+usuario_leer:
+    pattern:  /{id}/leer/
+    defaults: { _controller: "UsuarioBundle:Usuario:leer" }
+  
+paginas_inicio:
+    pattern:  /paginasinicio
+    defaults: { _controller: "UsuarioBundle:Usuario:paginasInicio" }
+    requirements: { _method: post }
+
+usuario_eliminar:
+    pattern:  /eliminar
+    defaults: { _controller: "UsuarioBundle:Usuario:eliminar" }
+    requirements: { _method: post }
+    
+usuario_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "UsuarioBundle:Usuario:delete" }
+    requirements: { _method: post|delete }
+
+usuario_restaurar:
+    pattern:  /restaurar
+    defaults: { _controller: "UsuarioBundle:Usuario:restaurar" }
+    requirements: { _method: post }

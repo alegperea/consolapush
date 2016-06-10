@@ -1,0 +1,30 @@
+rol:
+    pattern:  /
+    defaults: { _controller: "UsuarioBundle:Rol:index" }
+
+#rol_show:
+#    pattern:  /{id}/show
+#    defaults: { _controller: "UsuarioBundle:Rol:show" }
+
+#rol_new:
+#    pattern:  /new
+#    defaults: { _controller: "UsuarioBundle:Rol:new" }
+
+#rol_create:
+#    pattern:  /create
+#    defaults: { _controller: "UsuarioBundle:Rol:create" }
+#    requirements: { _method: post }
+
+#rol_edit:
+#    pattern:  /{id}/edit
+#    defaults: { _controller: "UsuarioBundle:Rol:edit" }
+
+#rol_update:
+#    pattern:  /{id}/update
+#    defaults: { _controller: "UsuarioBundle:Rol:update" }
+#    requirements: { _method: post }
+
+#rol_delete:
+#    pattern:  /{id}/delete
+#    defaults: { _controller: "UsuarioBundle:Rol:delete" }
+#    requirements: { _method: post }

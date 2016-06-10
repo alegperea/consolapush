@@ -1,0 +1,10 @@
+<footer>
+  <a class="btn btn-info" style="color: white;" href="{{ path(path) }}">
+    <i class="fa fa-arrow-circle-left"></i>
+    Volver
+  </a>
+  <button class="btn btn-info" type="submit" {% if name is defined %}name="{{ name }}{% endif %}">
+    <i class="fa fa-check-circle bigger-110"></i>
+    Guardar Cambios
+  </button>
+</footer>

@@ -1,0 +1,82 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/07/2014, 22:48:59
+    Author     : oper
+*/
+
+.header .navbar-default .navbar-nav > li > a {
+    font-size: 11px;
+}
+
+.td-acciones a{
+    min-width: 85px; 
+    font-size:18px; 
+    text-decoration: none;
+    text-align: center;
+}
+.td-eliminado{
+    font-size:18px; 
+    text-align: center;
+}
+
+#jgm_portalbundle_item_documentos li,#jgm_portalbundle_proyecto_documentos li{
+    list-style: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0;
+    margin: 0;
+}
+
+fieldset div section label{
+    font-weight: normal;
+}
+
+fieldset div section label.required:before{
+    content: "* ";
+}
+
+fieldset div section label.required{
+    font-weight: bolder;
+}
+
+.sky-form label.required {
+    font-weight: bolder;
+}
+
+.show-view label{
+    min-width: 150px;
+}
+
+div.tab-pane{
+    padding-top: 10px;
+}
+
+div.tab-pane li{
+    margin-left: 20px;
+    list-style: none;
+}
+
+.res-vencida{
+    color: red;
+    font-weight: bold;
+}
+
+.res-alerta{
+    color: orange;
+    font-weight: bold;
+}
+
+#resoluciones ,
+#resoluciones li {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.form_resoluciones {
+  margin-bottom: 60px;
+}

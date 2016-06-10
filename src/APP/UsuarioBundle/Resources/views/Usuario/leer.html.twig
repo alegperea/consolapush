@@ -1,0 +1,84 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Categoria
+{% endblock %}
+
+{% block contenido %}
+<div class="span12">
+    <div class="well-large">
+        <h1>Detalles del mensaje</h1>
+        {% include ':includes:flashes.html.twig' %}
+        <div class="tab-content no-border padding-24">
+            <div class="tab-pane in active" id="home">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 center">
+                        <span class="profile-picture">
+                            <img src="{{ asset('uploads/images/' ~ mensaje.usuarioorigen.rutafoto) }}"  class="img-responsive">
+                        </span>
+
+                        <div class="space space-4"></div>
+
+                    </div><!-- /span -->
+
+                    <div class="col-xs-12 col-sm-9">
+                        <h4 class="blue">
+                            <span class="middle">De: {{ mensaje.usuarioorigen }}</span>
+
+                        </h4>
+                        <div class="hr hr-8 dotted"></div>
+
+                    </div><!-- /span -->
+                </div><!-- /row-fluid -->
+
+                <div class="space-20"></div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="widget-box transparent">
+                            <div class="widget-header widget-header-small">
+                                <h4 class="smaller">
+                                    <i class="icon-check bigger-110"></i>
+                                    Descripción
+                                </h4>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <p>
+                                    {{ mensaje.texto|raw }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- #home -->
+        </div>
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <a class="btn btn-prev" href="{{ path('usuario_inbox') }}">
+                    <i class="icon-arrow-left"></i>
+                    VOLVER
+                </a>
+            </div>    
+        </div>
+
+    </div>
+    {#<div class="delete-form">
+        {% if mensaje.activo %}
+        <form action="{{ path('categoria_delete', { 'id': entity.id }) }}" method="post">
+            <button class="btn btn-grey btn-lg">
+                <i type="submit" class="icon-trash icon-2x icon-only"></i>
+            </button>
+        </form>
+        {% elseif app.user.perfil.esrolconfiguracion %}
+        <form action="{{ path('categoria_restore', { 'id': entity.id }) }}" method="post">
+            <button class="btn btn-success" type="submit"><i class="icon-ok"></i>RESTAURAR</button>
+        </form>
+        {% endif %}
+    </div>#}
+</div>
+{% endblock %}

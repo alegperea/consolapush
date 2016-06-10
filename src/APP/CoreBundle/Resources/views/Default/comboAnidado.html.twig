@@ -1,0 +1,45 @@
+{% if opciones|length > 0 %}
+    <div style="clear:both" class="{{ id_combo }}">
+        <label class=" required" for="{{ id_combo }}">{{ label }}</label>
+        <select id="{{ id_combo }}" required="required" name="{{ name_combo }}">
+            <option value="">Seleccione un {{ sub }}</option>
+            {% for opcion in opciones %}
+                <option {% if opcion.id == selected|default(0) %}selected="selected"{% endif %} value="{{ opcion.id }}">{{ opcion.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+<script type="text/javascript">
+function cargar(id,nombre){
+    $.ajax({ 
+        type: 'post', 
+        url: '{{ path('armar_combo_anidado') }}', 
+        data: { 
+            id_combo: "{{ id_combo }}",
+            name: "{{ name_combo }}",
+            id : id,
+            bundle: "{{ bundle }}",
+            entidad: "{{ entidad }}",
+            padre : "{{ padre }}", 
+            sub: "{{ sub }}",
+            label: "{{ sub }}s de "+nombre,
+        }, 
+        success: function(html) { 
+            var entidadDiv = $("#{{ entidad }}"); 
+            entidadDiv.append(html); 
+        } 
+    }); 
+}; 
+$(document).ready(function(){    
+    $('#{{ id_combo }}').change(function(event){
+       var i = ({{ nro_combo }} + 2);// id + 1
+       while ( i <= 10 ){
+          $(".{{ id_combo|substring(0,(id_combo|length - 2)) }}_"+i).remove();
+          i++;
+       }
+       if(this.value != ""){
+           cargar(this.value,$(this).find("option:selected").text());
+       }
+    });
+});
+</script>
+{% endif %}

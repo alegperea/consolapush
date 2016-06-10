@@ -1,0 +1,86 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Ver detalles de mi Perfil
+{% endblock %}
+
+{% block contenido %}
+<div id="contenedor_titulo">
+    <div class="titulo">Ver detalles de mi Perfil</div>
+    {% include ":includes:flashes.html.twig" %}
+</div>
+<div class="records_new">
+    <div class="formulario_div">
+    
+        <table class="record_properties">
+            <tbody>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ entity.nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido</th>
+                    <td>{{ entity.apellido }}</td>
+                </tr>
+                <tr>
+                    <th>Area al que pertenece</th>
+                    <td>{{ entity.area }}</td>
+                </tr>
+                <tr>
+                    <th>Perfil</th>
+                    <td>{{ entity.perfil }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo de documento</th>
+                    <td>{{ entity.tipodocumento }}</td>
+                </tr>
+                <tr>
+                    <th>Nro documento</th>
+                    <td>{{ entity.numerodocumento }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de Usuario</th>
+                    <td>{{ entity.username }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ entity.email }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td>{{ entity.telefono }}</td>
+                </tr>
+                <tr>
+                    <th>Interno</th>
+                    <td>{{ entity.interno }}</td>
+                </tr>
+                <tr>
+                    <th>Oficina</th>
+                    <td>{{ entity.oficina }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td>{{ entity.direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Página Inicio</th>
+                    <td>{{ entity.paginainicio }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <ul class="record_actions">
+        <li>
+            <a href="{{ path('usuario_perfil_edit', { 'id': entity.id }) }}">
+                <div>EDITAR PERFIL</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('usuario_perfil_edit_pass', { 'id': entity.id }) }}">
+                <div>EDITAR CONTRASEÑA</div>
+            </a>
+        </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

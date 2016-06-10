@@ -1,0 +1,33 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+<div id="contenedor_titulo">
+    <div class="titulo">Ver detalles</div>
+</div>
+<div class="records_new">
+<div class="formulario_div">
+
+{% include ":includes:flashes.html.twig" %}
+    
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Descripcion</th>
+            <td>{{ entity.descripcion }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('rol') }}">
+            <div>VOLVER</div>
+        </a>
+    </li>
+</ul>
+</div></div>
+{% endblock %}

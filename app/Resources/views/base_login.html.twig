@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> 
+<html lang="es"> <!--<![endif]-->  
+<head>
+    <title>{%block title %}Sistema de gestión{%endblock%}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+{% block stylesheet %}
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css')}}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/icheck/flat/green.css')}}">
+    <script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
+
+
+{% endblock %}
+
+</head>	
+    <body style="background:#F7F7F7;">
+    {% block body %}
+
+    {% endblock %}
+
+    </body>
+</html>

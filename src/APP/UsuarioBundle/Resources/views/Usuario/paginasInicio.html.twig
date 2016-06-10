@@ -1,0 +1,6 @@
+<label class=" required" for="pac_usuariobundle_usuariotype_pagina_inicio">Pagina inicio</label>
+<select required="required" name="pac_usuariobundle_usuariotype[pagina_inicio]" id="pac_usuariobundle_empleadotype_pagina_inicio">
+{% for pagina_inicio in paginas_inicio %}
+    <option {% if paginas_inicio|length == 1 %}selected="selected"{% endif %} value="{{ pagina_inicio.id }}">{{ pagina_inicio.nombre }}</option>
+{% endfor %}
+</select>

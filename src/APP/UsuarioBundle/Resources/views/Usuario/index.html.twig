@@ -1,0 +1,48 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}Listado de Usuarios{% endblock %}
+
+{% block contenido %}
+
+{% include ":includes:flashes.html.twig" %}
+
+<h1>Listado de Usuarios</h1>
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tabla">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Username</th>
+            <th style="text-align: center;">Nombre</th>
+            <th style="text-align: center;">Apellido</th>
+            {#<th>Area</th>#}
+            <th style="text-align: center;">Perfil</th>
+            <th style="text-align: center;">Eliminado</th>
+            <th style="text-align: center;">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.username }}</td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.apellido }}</td>
+            {#<td>{{ entity.area }}</td>#}
+            <td>{{ entity.perfil }}</td>
+            <td class="td-eliminado" id="{{entity.id}}">{% if entity.eliminado %}{% include ":includes:_yesIcon.html.twig" %}{% else %}{% include ":includes:_noIcon.html.twig" %}{% endif %}</td>
+            <td class="td-acciones text-center">
+                <a href="{{ path('usuario_show', { 'id': entity.id }) }}">{% include ":includes:_verIcon.html.twig" %}</a>
+                <a href="{{ path('usuario_edit', { 'id': entity.id }) }}">{% include ":includes:_editIcon.html.twig" %}</a>
+                {% include ':includes:_aDelRestore.html.twig' with { 'id': entity.id } %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+        var tabla = mostrarTabla('#tabla');
+        eliminarRestaurarDatatables(" {{ path('usuario_eliminar') }} "," {{ path('usuario_restaurar') }}",tabla);
+</script>
+{% endblock %}

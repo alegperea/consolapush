@@ -1,0 +1,109 @@
+{% block form_widget_simple -%}
+    {% set type = type|default('text') -%}
+    {% if type != "file" %}
+        <label class="input">
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </label>
+    {% else %}
+        <label class="input input-file" for="file">
+            <div class="button"><input type="file" {{ block('widget_attributes') }} onchange="this.parentNode.nextSibling.value = this.value">Buscar</div><input type="text" readonly="">
+        </label>
+    {% endif %}
+{%- endblock form_widget_simple %}
+
+{% block form_row -%}
+    <section>
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </section>
+{%- endblock form_row %}
+
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif %}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif %}
+        {% if label is empty -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="label {{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {%- endif %}
+{%- endblock form_label %}
+        
+{% block textarea_widget -%}
+    <label class="textarea textarea-resizable">
+        <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+    </label>
+{%- endblock textarea_widget %}
+        
+{% block date_widget -%}
+    {% if widget == 'single_text' %}
+        {% set type = type|default('text') -%}
+        <label class="input">
+            <i class="icon-append fa fa-calendar"></i>
+            <input class="date" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </label>
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{- date_pattern|replace({
+                '{{ year }}': form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}': form_widget(form.day),
+            })|raw -}}
+        </div>
+    {%- endif %}
+{%- endblock date_widget %}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    <div class="alert alert-danger fade in alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        <ul>
+        {%- for error in errors -%}
+            <li style="list-style: none;">{{ error.message }}</li>
+        {%- endfor -%}
+        </ul>
+    </div>
+    {%- endif %}
+{%- endblock form_errors %}
+        
+{% block choice_widget_collapsed -%}
+    {% if required and empty_value is none and not empty_value_in_choices and not multiple -%}
+        {% set required = false %}
+    {% endif %}
+    <label class="select{% if multiple %} select-multiple{% endif %}">
+        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+            {% if empty_value is not none -%}
+                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+            {%- endif %}
+            {%- if preferred_choices|length > 0 -%}
+                {% set options = preferred_choices %}
+                {{- block('choice_widget_options') -}}
+                {% if choices|length > 0 and separator is not none -%}
+                    <option disabled="disabled">{{ separator }}</option>
+                {%- endif %}
+            {%- endif -%}
+            {% set options = choices -%}
+            {{- block('choice_widget_options') -}}
+        </select>
+        <i></i>
+    </label>
+{%- endblock choice_widget_collapsed %}
+        
+{% block choice_widget_expanded -%}
+    <div class="inline-group" {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+        <label class="radio">
+            {{- form_widget(child) -}}
+            {#<input type="radio" checked="" name="radio-inline">#}
+            <i class="rounded-x"></i>
+            {{- form_label(child) -}}
+        </label>
+        {#{{- form_widget(child) -}}#}
+    {% endfor -%}
+    </div>
+{% endblock choice_widget_expanded %}

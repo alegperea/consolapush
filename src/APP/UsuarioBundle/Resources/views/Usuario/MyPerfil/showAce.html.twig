@@ -1,0 +1,130 @@
+{% extends '::backend.html.twig' %}
+
+{% form_theme formulario 'CoreBundle:Form:form_unity.html.twig' %}
+
+{% block contenido %}
+{% include ":includes:flashes.html.twig" %}
+{% include ":includes:errors.html.twig" %}
+
+<div class="hr dotted"></div>
+<div>
+    <div id="user-profile-3" class="user-profile row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <!-- /well -->
+
+                <div class="space"></div>
+
+                <form class="sky-form" novalidate action="{{ path('usuario_showperfilace') }}" method="post" {{ form_enctype(formulario) }}>
+                    
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs padding-16">
+                            <li class="{% if tab_contraseña is not defined %}active{% endif %}">
+                                <a data-toggle="tab" href="#edit-basic">
+                                    <i class="green icon-edit bigger-125"></i>
+                                    Información Básica
+                                </a>
+                            </li>
+
+                            <li class="{% if tab_contraseña is defined %}active{% endif %}">
+                                <a data-toggle="tab" href="#edit-password">
+                                    <i class="blue icon-key bigger-125"></i>
+                                    Cambiar Contraseña
+                                </a>
+                            </li>
+                        </ul>
+                        <fieldset>
+                        <div class="tab-content profile-edit-tab-content">
+                            <div id="edit-basic" class="tab-pane {% if tab_contraseña is not defined %}active{% endif %}">
+                                <h4 class="header blue bolder smaller">General</h4>
+                                
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <Label>Foto de Perfil</Label>
+                                            {{ form_widget(formulario.foto) }}
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8">
+                                            {{ form_row(formulario.nombre) }}
+                                            {{ form_row(formulario.apellido) }}
+                                        </div>
+                                    </div>
+                                    <h4 class="header blue bolder smaller">Contacto</h4>
+
+                                    {{ form_row(formulario.telefono) }}
+                                    {{ form_row(formulario.telefonoAlternativo) }}
+
+                            </div>
+
+                            <div id="edit-password" class="tab-pane {% if tab_contraseña is defined %}active{% endif %}">
+                                    <div class="space-10"></div>
+
+                                    {{ form_row(formulario.oldpassword) }}
+                                    {{ form_row(formulario.password) }}
+                                    {% if form_errors(formulario.password) %}
+                                        <div class="alert alert-error">{{ form_errors(formulario.password) }}</div>
+                                    {% endif %}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="clearfix form-actions" style="margin-bottom: 10px;">
+                            <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" type="submit">
+                                            <i class="icon-ok bigger-110"></i>
+                                            Guardar Cambios
+                                    </button>
+
+                            </div>
+                    </div>
+                    </fieldset>
+                </form>
+        </div><!-- /span -->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+///////////////////////////////////////////
+$('#user-profile-3')
+    .find('input[type=file]').ace_file_input({
+            style:'well',
+            btn_choose:'Seleccione foto de Perfil',
+            btn_change:null,
+            no_icon:'icon-picture',
+            icon_remove:"icon-remove",
+            thumbnail:'large',
+            droppable:true,
+            no_file: "No selecciono foto de Perfil ...",
+            before_change: function(files, dropped) {
+                    var file = files[0];
+                    if(typeof file === "string") {//files is just a file name here (in browsers that don't support FileReader API)
+                            if(! (/\.(jpe?g|png|gif)$/i).test(file) ) return false;
+                    }
+                    else {//file is a File object
+                            var type = $.trim(file.type);
+                            if( ( type.length > 0 && ! (/^image\/(jpe?g|png|gif)$/i).test(type) )
+                                            || ( type.length == 0 && ! (/\.(jpe?g|png|gif)$/i).test(file.name) )//for android default browser!
+                                    ) return false;
+
+                            if( file.size > 110000 ) {//~100Kb
+                                    return false;
+                            }
+                    }
+
+                    return true;
+            }
+    });
+    
+    $(".ace-file-input .remove").click(function(e){
+        e.preventDefault();
+        $(".ace-file-input label.file-label").removeClass("hide-placeholder");
+        $(".ace-file-input label.file-label").removeClass("selected");
+        $(".ace-file-input label.file-label").attr('data-title',"Seleccione Foto de Perfil");
+        $(".ace-file-input span.file-name").removeClass("large");
+        $(".ace-file-input span.file-name").attr('data-title',"No selecciono Foto de Perfil ...");
+        $(".ace-file-input span.file-name").html('<i class="icon-picture"></i>');
+    });
+</script>
+{% endblock %}

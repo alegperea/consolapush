@@ -1,0 +1,100 @@
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+        {% for error in errors %}
+            {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+        {% endfor %}
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
+
+{% block field_row %}
+{% spaceless %}
+    <div class="form-label">{{ form_label(form, label|default(null)) }}</div>
+    <div class="form-widget">{{ form_widget(form) }}</div>
+    {% if form_errors(form) %}
+        <div class="form-error">{{ form_errors(form) }}</div>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_row %}
+        
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <div class="help-block col-xs-12 col-sm-reset inline red"> 
+        {% for error in errors %}
+            {{ error.message }}<br/>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+        
+{% block form_row %}
+{% spaceless %}
+    <div class="form-group {% if errors|length > 0 %}has-error{% endif %}">
+        {{ form_label(form) }}
+        <div class="col-sm-8">
+            <div class="col-md-6 col-sm-6 col-xs-12">{{ form_widget(form) }}</div>
+            {{ form_errors(form) }}
+        </div>
+    </div>
+    <div class="space-4"></div>
+{% endspaceless %}
+{% endblock form_row %}
+        
+{% block textarea_widget %}
+{% spaceless %}
+    {#
+    {% set type = type|default('hidden') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <div id="wysiwyg" class="wysiwyg-editor">{{ value }}</div>
+    #}
+    <textarea class="form-control wysiwyg-editor {% if errors|length > 0 %}red{% endif %}" {{ block('widget_attributes') }}>{{ value }}</textarea>
+    <div>{{ form_errors(form) }}</div>
+{% endspaceless %}
+{% endblock textarea_widget %}
+    
+{% block choice_widget_expanded %}
+{% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <div {{ block('widget_container_attributes') }} class="control-group">
+    <label class="control-label bolder blue">{{ label|trans({}, translation_domain) }}</label>
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+    
+{% block radio_widget %}
+{% spaceless %}
+    <div class="radio">
+    <label>
+        <input class="ace" type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        <span class="ins">{{ label|trans({}, translation_domain) }}</span>
+    </label>
+    </div>
+{% endspaceless %}
+{% endblock radio_widget %}
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <label class="{% if label_attr.colsm is defined %}{{ label_attr.colsm }}{% else %} col-sm-3 {% endif %} control-label no-padding-right" {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+

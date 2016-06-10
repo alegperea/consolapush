@@ -1,0 +1,36 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+<div id="contenedor_titulo">
+    <div class="titulo">Editar contraseña de {{ app.user }}</div>
+    {% include ":includes:flashes.html.twig" %}
+</div>
+<div class="records_new" style="padding-bottom: 20px;">
+<div class="formulario_div">
+
+<form action="{{ path('usuario_perfil_update_pass') }}" method="post" {{ form_enctype(formulario) }}>
+    {% if form_errors(formulario) %}<div class="form-error">{{ form_errors(formulario) }}</div>{% endif %}
+    <div>{{ form_label(formulario.oldpassword) }} {{ form_widget(formulario.oldpassword) }}</div>
+    {% if form_errors(formulario.oldpassword) %}<div class="form-error">{{ form_errors(formulario.oldpassword) }} </div>{% endif %}
+    <div>{{ form_row(formulario.password) }}</div>
+    <p>
+        <button type="submit">GUARDAR</button>
+    </p>
+    {{ form_rest(formulario) }}
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('usuario_perfil_show') }}">
+            <div>VOLVER</div>
+        </a>
+    </li>
+</ul>
+</div>
+    </div>
+{% endblock %} 
+{#
+<div><label class=" required" for="pac_usuariobundle_usuariotype_password_Repetir Contraseña">Contraseña</label>{{ form_widget(f['Contraseña']) }}</div>
+            <div><label class=" required" for="pac_usuariobundle_usuariotype_password_Repetir Contraseña">Repetir contraseña</label>{{ form_widget(f['Repetir Contraseña']) }}</div>
+
+#}

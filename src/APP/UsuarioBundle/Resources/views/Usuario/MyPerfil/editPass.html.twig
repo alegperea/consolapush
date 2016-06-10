@@ -1,0 +1,27 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+
+<div class="row">
+    <div class="span4 offset4">
+        <div class="well">
+        <legend>Cambiar contraseña</legend>
+        <form novalidate action="{{ path('usuario_updatepassperfil') }}" method="post" {{ form_enctype(formulario) }}>
+            {% include ":includes:flashes.html.twig" %}
+            {% include ":includes:errors.html.twig" %}
+            
+            {{ form_widget(formulario.oldpassword) }}
+            {{ form_widget(formulario.password) }}
+            {% if form_errors(formulario.password) %}
+                <div class="alert alert-error">{{ form_errors(formulario.password) }}</div>
+            {% endif %}
+
+            <p><button class="btn btn-info btn-block" type="submit">Cambiar Contraseña</button></p>
+            {{ form_rest(formulario) }}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

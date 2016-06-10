@@ -1,0 +1,63 @@
+{% extends '::backend.html.twig' %}
+{% form_theme form 'CoreBundle:Form:form.html.twig' %}
+
+{% block contenido %}
+    {% include ':includes:flashes.html.twig' %}
+
+<div class="page-content">
+    <div class="page-header">
+            <h1>
+                    Buzón de mensajes
+                    <small>
+                            <i class="icon-double-angle-right"></i>
+                            Escribir
+                    </small>
+            </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form id="id-message-form" class="form-horizontal message-form col-xs-12" action="{{ path('usuario_escribir') }}" method="post">
+                                <div class="form-group">
+                                        <label for="form-field-recipient" class="col-sm-3 control-label no-padding-right">Enviar a:</label>
+                                        <div class="col-sm-9">
+                                                <span class="input-icon" style="padding-left: 30px;">
+                                                        <i class="icon-user"></i>
+                                                        {{ form_widget(form.usuario_destino) }}
+                                                </span>
+                                                
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                        <label for="form-field-recipient" class="col-sm-3 control-label no-padding-right">Mensaje:</label>
+                                        {{ form_widget(form.texto) }}
+                                </div>
+                                {{ form_rest(form) }}
+                                <div class="clearfix form-actions">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a href="{{ path('usuario_inbox')}}" class="btn btn-prev">
+                                            <i class="icon-arrow-left"></i>
+                                            Volver
+                                        </a>
+                                        <button type="submit" class="btn btn-info">
+                                            <i class="icon-ok bigger-110"></i>
+                                            Enviar
+                                        </button>
+                                    </div>    
+                                </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

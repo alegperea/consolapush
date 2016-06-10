@@ -1,0 +1,82 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+    {% include ':includes:flashes.html.twig' %}
+
+<div class="page-content">
+    <div class="page-header">
+            <h1>
+                    Buzón de mensajes
+                    <small>
+                            <i class="icon-double-angle-right"></i>
+                            Recibidos
+                    </small>
+            </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="row">
+                    <div class="col-xs-12">
+                            <div class="tabbable">
+                                    <ul class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1" id="inbox-tabs">
+                                            <li class="li-new-mail pull-right">
+                                                    <a class="btn-new-mail" data-target="write" href="{{ path('usuario_escribir')}}">
+                                                            <span class="btn bt1n-small btn-purple no-border">
+                                                                    <i class=" icon-envelope bigger-130"></i>
+                                                                    <span class="bigger-110">Escribir</span>
+                                                            </span>
+                                                    </a>
+                                            </li><!-- ./li-new-mail -->
+
+                                            <li class="active">
+                                                    <a data-target="inbox" href="{{ path('usuario_inbox')}}">
+                                                            <i class="blue icon-inbox bigger-130"></i>
+                                                            <span class="bigger-110">Entrada ({{app.user.mensajesrecibidos |length}})</span>
+                                                    </a>
+                                            </li>
+
+                                            <li>
+                                                    <a data-target="sent" href="{{ path('usuario_outbox')}}">
+                                                            <i class="orange icon-location-arrow bigger-130 "></i>
+                                                            <span class="bigger-110">Salida ({{app.user.mensajesenviados |length}})</span>
+                                                    </a>
+                                            </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                <div id="recibidos" class="row">
+                    <div class="col-xs-12">
+                        <div class="message-list-container">
+                            <div id="message-list" class="message-list">
+                                {% for mensaje in app.user.mensajesrecibidos|reverse %}
+                                    <div class="message-item {% if mensaje.leido == 0 %} message-unread {% endif %}">
+                                            <label class="inline">
+                                                    <input type="checkbox" class="ace">
+                                                    <span class="lbl"></span>
+                                            </label>
+                                            <span title="{{ mensaje.usuarioorigen }}" class="sender">{{ mensaje.usuarioorigen }}</span>
+                                            <span class="time">{{ mensaje.createdAt |date('H:i:s d-m-Y')}}</span>
+
+                                            <span class="summary">
+                                                <a href="{{ path('usuario_leer', { 'id': mensaje.id }) }}">
+                                                    <span class="text">
+                                                            {{ mensaje.texto }}
+                                                    </span>
+                                                </a>
+                                            </span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

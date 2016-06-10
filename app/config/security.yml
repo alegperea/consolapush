@@ -1,0 +1,42 @@
+security:
+    encoders:
+        APP\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        usuarios:
+            entity: { class: APP\UsuarioBundle\Entity\Usuario, property: username }
+
+    firewalls:
+        frontend:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                login_path: usuario_login
+                check_path: usuario_login_check
+                default_target_path: /home
+                always_use_default_target_path: true
+            logout:
+                path: usuario_logout
+            remember_me:
+                key: jgm1234
+                lifetime: 31536000 # 365 days in seconds
+
+    access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inicio, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/showperfil, roles: [IS_AUTHENTICATED_FULLY] }
+        - { path: ^/item/[0-9]*/show, roles: [IS_AUTHENTICATED_FULLY] }
+        - { path: ^/admin/, roles: [ROLE_ADMINISTRADOR] }
+        - { path: ^/admin/*, roles: [ROLE_ADMINISTRADOR] }
+        - { path: ^/usuario/*, roles: [ROLE_ADMINISTRADOR] }
+        - { path: ^/perfil/*, roles: [ROLE_ADMINISTRADOR] }
+        - { path: ^/rol/*, roles: [ROLE_ADMINISTRADOR] }
+        - { path: ^/cliente/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
+        - { path: ^/home/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/*, roles: IS_AUTHENTICATED_FULLY }

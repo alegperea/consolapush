@@ -1,0 +1,80 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Detalles del Perfil
+{% endblock %}
+
+{% block contenido %}
+<div class="span12">
+    <div class="well-large">
+        <h1>Detalles del Perfil</h1>
+        <div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Nombre </div>
+
+                <div class="profile-info-value">
+                    <span>{{ entity.nombre }}</span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Roles </div>
+
+                {% for rol in entity.roles %}
+                <div class="profile-info-value">
+                    <span>{{ rol.nombre }}</span>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="widget-box transparent">
+                    <div class="widget-header widget-header-small">
+                        <h4 class="smaller">
+                            <i class="icon-check bigger-110"></i>
+                            Descripción
+                        </h4>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <p>
+                                    {{ entity.descripcion|raw }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <a class="btn btn-prev" href="{{ path('perfil') }}">
+                    <i class="icon-arrow-left"></i>
+                    Volver
+                </a>
+                <a href="{{ path('perfil_edit', { 'id': entity.id }) }}" class="btn btn-primary">
+                    EDITAR
+                </a>
+            </div>    
+        </div>
+    {% if not entity.perfildefault %}
+        <div>
+        {% if entity.activo %}
+            <form action="{{ path('perfil_delete', { 'id': entity.id }) }}" method="post">
+                <button class="btn btn-grey btn-lg">
+                    <i type="submit" class="icon-trash icon-2x icon-only"></i>
+                </button>
+            </form>
+        {% else %}
+            <form action="{{ path('perfil_restore', { 'id': entity.id }) }}" method="post">
+                <button class="btn btn-success" type="submit"><i class="icon-ok"></i>RESTAURAR</button>
+            </form>
+        {% endif %}
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

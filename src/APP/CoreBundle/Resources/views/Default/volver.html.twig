@@ -1,0 +1,21 @@
+<div class="clearfix form-actions">
+    <div class="text-center">
+        <a class="btn btn-info" style="color: white;" href="{{ path(path) }}">
+            <i class="fa fa-arrow-circle-left"></i>
+            Volver
+        </a>
+        {% if edit is defined %}
+          {% if tab is defined %}
+            <a class="btn btn-info" href="{{ path(path ~ '_edit', { id: entity.id, 'tab' : tab }) }}">
+              <i class="fa fa-pencil"></i>
+              Editar
+            </a>
+          {% else %}
+            <a class="btn btn-info" href="{{ path(path ~ '_edit', { id: entity.id }) }}">
+              <i class="fa fa-pencil"></i>
+              Editar
+            </a>
+          {% endif %}
+        {% endif %}
+    </div>    
+</div>

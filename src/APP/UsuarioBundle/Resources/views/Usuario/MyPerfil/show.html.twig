@@ -1,0 +1,22 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+{% include ":includes:flashes.html.twig" %}
+<legend>Datos de su Perfil</legend>
+<div class="span12">
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>{{ entity.nombre }}</dd>
+        <dt>Apellido</dt>
+        <dd>{{ entity.apellido }}</dd>
+        <dt>E-Mail</dt>
+        <dd>{{ entity.email }}</dd>
+        <dt>Empresa</dt>
+        <dd>{{ entity.empresa }}</dd>
+    </dl>
+</div>
+<div class="buttons">
+    <a href="{{ path('usuario_editperfil') }}" class="btn btn-info">Editar Perfil</a>
+    <a href="{{ path('usuario_editpassperfil') }}" class="btn btn-info">Editar Contraseña</a>
+</div>
+{% endblock %}

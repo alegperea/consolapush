@@ -1,0 +1,18 @@
+<div class="clearfix form-actions">
+    <div class="text-center">
+        <a class="btn btn-info" style="color: white;" href="{{ path(path) }}">
+            <i class="fa fa-arrow-circle-left"></i>
+            Volver
+        </a>
+        <button class="btn btn-info" type="submit">
+            <i class="fa fa-check-circle bigger-110"></i>
+            Guardar Cambios
+        </button>
+        {% if app.user.perfil.esrolconfiguracion %}
+        <a href="{{ path('usuario_edit_pass', { 'id' : entity.id }) }}" class="btn btn-info" style="color: white;">
+            <i class="fa fa-key"></i>
+            Editar Contraseña
+        </a>
+        {% endif %}
+    </div>    
+</div>

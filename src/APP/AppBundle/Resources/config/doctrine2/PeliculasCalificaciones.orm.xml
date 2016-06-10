@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="JGM\IncaaBundle\Entity\PeliculasCalificaciones" table="peliculas_calificaciones">
+    <indexes>
+      <index name="pelicula" columns="pelicula"/>
+      <index name="_id_caec" columns="_id_caec"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="pelicula" type="integer" column="pelicula" nullable="false"/>
+    <field name="tipo" type="boolean" column="tipo" nullable="false"/>
+    <field name="calificacion" type="integer" column="calificacion" nullable="false"/>
+    <field name="formato" type="string" column="formato" length="3" nullable="true"/>
+    <field name="fecha" type="date" column="fecha" nullable="false"/>
+    <field name="modo" type="string" column="modo" length="1" nullable="false"/>
+    <field name="sala" type="string" column="sala" length="50" nullable="false"/>
+    <field name="votos" type="boolean" column="votos" nullable="false"/>
+    <field name="conReservas" type="boolean" column="con_reservas" nullable="false"/>
+    <field name="conLeyendas" type="boolean" column="con_leyendas" nullable="false"/>
+    <field name="leyenda" type="integer" column="leyenda" nullable="false"/>
+    <field name="idCaec" type="integer" column="_id_caec" nullable="false"/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,31 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Detalles de Usuario
+{% endblock %}
+
+{% block contenido %}
+<div class="span12">
+    <div class="well-large">
+        <h1>Detalles del Usuario</h1>
+        {% include ":includes:flashes.html.twig" %}
+        <div class="show-view">
+            <div><label>Username: </label> {{ entity.username |default('') }}</div>
+            <div><label>Apellido: </label> {{ entity.apellido |default('') }}</div>
+            <div><label>Tipo de Documento: </label> {{ entity.tipodocumento |default('') }}</div>
+            <div><label>Número de documento: </label> {{ entity.numerodocumento |default('') }}</div>
+            <div><label>E-mail: </label> {{ entity.email |default('') }}</div>
+            <div><label>Teléfono: </label> {{ entity.telefono |default('') }}</div>
+            <div><label>Teléfono Alt.: </label> {{ entity.telefonoalternativo |default('') }}</div>
+            <div><label>Página de inicio: </label> {{ entity.paginainicio |default('') }}</div>
+            <div class="text-center">
+                {% if is_granted('ROLE_ADMINISTRADOR') %}
+                    {% include 'CoreBundle:Default:volverEditar.html.twig' with { 'path' : 'usuario', 'id' : entity.id } %} 
+                {% else %}
+                
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

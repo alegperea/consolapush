@@ -1,0 +1,6 @@
+<div class="alert">
+        {% for f in form %}
+            <span class="errors">{{f.vars.label}}: {{ form_errors(f) }}</span>
+        {% endfor %}
+        <span class="errors">{{ form_errors(form) }}</span>
+</div>

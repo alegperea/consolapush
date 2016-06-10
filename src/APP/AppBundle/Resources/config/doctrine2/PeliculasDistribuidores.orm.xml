@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="JGM\IncaaBundle\Entity\PeliculasDistribuidores" table="peliculas_distribuidores">
+    <indexes>
+      <index name="pelicula" columns="pelicula"/>
+      <index name="distribuidor" columns="distribuidor"/>
+      <index name="_id_caec" columns="_id_caec"/>
+    </indexes>
+    <id name="pelicula" type="integer" column="pelicula"/>
+    <id name="distribuidor" type="integer" column="distribuidor"/>
+    <field name="usuarioAlta" type="integer" column="usuario_alta" nullable="false"/>
+    <field name="fechahoraAlta" type="datetime" column="fechahora_alta" nullable="false"/>
+    <field name="idCaec" type="integer" column="_id_caec" nullable="false"/>
+  </entity>
+</doctrine-mapping>

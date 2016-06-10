@@ -1,0 +1,12 @@
+UsuarioBundle_rol:
+  resource: "@UsuarioBundle/Resources/config/routing/rol.yml"
+  prefix:   /rol
+
+UsuarioBundle_perfil:
+  resource: "@UsuarioBundle/Resources/config/routing/perfil.yml"
+  prefix:   /perfil
+
+UsuarioBundle_usuario:
+  resource: "@UsuarioBundle/Resources/config/routing/usuario.yml"
+  prefix:   /usuario
+

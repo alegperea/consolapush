@@ -1,0 +1,7 @@
+parameters:
+#    incaa.example.class: JGM\IncaaBundle\Example
+
+services:
+#    incaa.example:
+#        class: %incaa.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

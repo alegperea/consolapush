@@ -1,0 +1,19 @@
+{% extends '::backend.html.twig' %}
+{% form_theme form 'CoreBundle:Form:form_unity.html.twig' %}
+
+
+{% block contenido %}
+<div class="span12">
+    <div class="well-large">
+        {% include ':includes:flashes.html.twig' %}
+        <form class="sky-form" action="{{ path('usuario_create') }}" method="post" {{ form_enctype(form) }}>
+            <header>Nuevo Usuario</header>
+            <fieldset>
+                    {% include ':includes:flashes.html.twig' %}
+                    {{ form_widget(form) }}
+                    {% include "CoreBundle:Default:volverGuardar.html.twig" with { 'path' : 'usuario' } %}
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

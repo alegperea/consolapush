@@ -1,0 +1,22 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenidoHeader %}
+  <div class="row-fluid">
+    <div class="container-fluid header">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+          
+        <div class="content-box">
+          
+            {% include ":includes:flashes.html.twig" %}
+            
+          <div class="content-box-header">
+              
+            <h2 class="title title-gral">App - Sistema de gestón</h2>
+          </div>
+        </div>
+      </div>
+      {% block containerHeader %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

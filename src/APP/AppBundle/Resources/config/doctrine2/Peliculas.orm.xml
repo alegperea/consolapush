@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="JGM\IncaaBundle\Entity\Peliculas" table="peliculas">
+    <indexes>
+      <index name="_id_caec" columns="_id_caec"/>
+      <index name="origen" columns="origen"/>
+      <index name="certificado_calificacion_fecha" columns="certificado_calificacion_fecha"/>
+      <index name="FK_peliculas_padre" columns="padre"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="codigo" columns="codigo"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="255" nullable="true"/>
+    <field name="nombreOriginal" type="string" column="nombre_original" length="255" nullable="true"/>
+    <field name="expediente" type="string" column="expediente" length="50" nullable="true"/>
+    <field name="fechaEstreno" type="date" column="fecha_estreno" nullable="true"/>
+    <field name="fechaCartelera" type="date" column="fecha_cartelera" nullable="true"/>
+    <field name="codigo" type="string" column="codigo" length="255" nullable="true"/>
+    <field name="distribuidora" type="integer" column="distribuidora" nullable="true"/>
+    <field name="distribuidoraCodigo" type="string" column="distribuidora_codigo" length="50" nullable="true"/>
+    <field name="productora" type="integer" column="productora" nullable="true"/>
+    <field name="productoraCodigo" type="string" column="productora_codigo" length="50" nullable="true"/>
+    <field name="certificadoOrigen" type="boolean" column="certificado_origen" nullable="true"/>
+    <field name="certificadoAduana" type="string" column="certificado_aduana" length="1" nullable="true"/>
+    <field name="certificadoLaboratorio" type="boolean" column="certificado_laboratorio" nullable="true"/>
+    <field name="certificadoExhibicion" type="boolean" column="certificado_exhibicion" nullable="true"/>
+    <field name="certificadoExhibicionFecha" type="date" column="certificado_exhibicion_fecha" nullable="true"/>
+    <field name="certificadoCalificacion" type="boolean" column="certificado_calificacion" nullable="true"/>
+    <field name="certificadoCalificacionFecha" type="date" column="certificado_calificacion_fecha" nullable="true"/>
+    <field name="retiroCertificado" type="string" column="retiro_certificado" length="1" nullable="true"/>
+    <field name="medio" type="integer" column="medio" nullable="true"/>
+    <field name="album" type="integer" column="album" nullable="true"/>
+    <field name="calificacionCola" type="integer" column="calificacion_cola" nullable="true"/>
+    <field name="calificacion" type="integer" column="calificacion" nullable="true"/>
+    <field name="preclasificacion" type="string" column="preclasificacion" length="3" nullable="true"/>
+    <field name="preclasificacionFecha" type="date" column="preclasificacion_fecha" nullable="true"/>
+    <field name="preclasificacionResolucionNumero" type="string" column="preclasificacion_resolucion_numero" length="50" nullable="true"/>
+    <field name="paso" type="integer" column="paso" nullable="true"/>
+    <field name="formato" type="string" column="formato" length="3" nullable="true"/>
+    <field name="color" type="string" column="color" length="2" nullable="true"/>
+    <field name="sistema" type="integer" column="sistema" nullable="true"/>
+    <field name="duracionMin" type="integer" column="duracion_min" nullable="true"/>
+    <field name="duracionSeg" type="boolean" column="duracion_seg" nullable="true"/>
+    <field name="metraje" type="decimal" column="metraje" precision="11" scale="2" nullable="true"/>
+    <field name="importacion" type="string" column="importacion" length="1" nullable="true"/>
+    <field name="web" type="string" column="web" length="100" nullable="true"/>
+    <field name="directores" type="string" column="directores" length="255" nullable="true"/>
+    <field name="actores" type="string" column="actores" length="255" nullable="true"/>
+    <field name="usuarioAct" type="integer" column="usuario_act" nullable="true"/>
+    <field name="fechahoraAct" type="datetime" column="fechahora_act" nullable="true"/>
+    <field name="usuarioAlta" type="integer" column="usuario_alta" nullable="true"/>
+    <field name="fechahoraAlta" type="datetime" column="fechahora_alta" nullable="true"/>
+    <field name="nacional" type="boolean" column="nacional" nullable="true"/>
+    <field name="clasificacion" type="string" column="clasificacion" length="3" nullable="true"/>
+    <field name="clasificacionFecha" type="date" column="clasificacion_fecha" nullable="true"/>
+    <field name="responsable" type="string" column="responsable" length="255" nullable="true"/>
+    <field name="idCaec" type="integer" column="_id_caec" nullable="true"/>
+    <field name="disposicion" type="boolean" column="disposicion" nullable="true"/>
+    <field name="origen" type="string" column="origen" length="3" nullable="true"/>
+    <field name="cuotaPantalla" type="string" column="cuota_pantalla" length="1" nullable="false"/>
+    <field name="docFic" type="string" column="doc_fic" length="1" nullable="true"/>
+    <many-to-one field="padre" target-entity="Peliculas">
+      <join-columns>
+        <join-column name="padre" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

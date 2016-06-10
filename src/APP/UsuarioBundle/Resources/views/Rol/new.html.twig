@@ -1,0 +1,37 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+<div id="contenedor_titulo">
+    <div class="titulo">crear rol</div>
+</div>
+<div class="records_new">
+<div class="formulario_div">
+
+{% include ":includes:flashes.html.twig" %}
+    
+<form action="{{ path('rol_create') }}" method="post" {{ form_enctype(form) }}>
+    <div style="height : auto">
+        <div>{{ form_errors(form) }} </div>
+        {% for f in form %}
+            {% if f.vars.label|trim != 'token' %}
+                <div>{{ form_label(f) }} {{ form_widget(f) }}</div>
+                {% if form_errors(f) %}<div>{{ form_errors(f) }}</div>{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form_rest(form) }}
+        <div class="clear_both"></div>
+    </div>
+    <p>
+        <button type="submit">CREAR</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('rol') }}">
+            <div>VOLVER</div>
+        </a>
+    </li>
+</ul>
+</div></div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends '::backend.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Editar Perfil
+{% endblock %}
+
+{% block contenido %}
+<div id="contenedor_titulo">
+    <div class="titulo">Editar Perfil de {{ app.user }}</div>
+    {% include ":includes:flashes.html.twig" %}
+</div>
+<div class="records_new" style="padding-bottom: 20px;">
+<div class="formulario_div">
+
+<form action="{{ path('usuario_perfil_update') }}" method="post" {{ form_enctype(formulario) }}>
+    {% if form_errors(formulario) %}<div class="form-error">{{ form_errors(formulario) }}</div>{% endif %}
+    {% for f in formulario %}
+        {% set label =  f.vars.label|trim %}
+        {% if label != 'token' %}
+            {% if label == 'Password' %}
+                <div><label class=" required" for="pac_usuariobundle_usuariotype_password_Repetir Contraseña">Contraseña</label>{{ form_widget(f['Contraseña']) }}</div>
+                <div><label class=" required" for="pac_usuariobundle_usuariotype_password_Repetir Contraseña">Repetir contraseña</label>{{ form_widget(f['Repetir Contraseña']) }}</div>
+            {% else %}
+                <div>{{ form_label(f) }} {{ form_widget(f) }}</div>
+            {% endif %}
+            {% if form_errors(f) %}<div class="form-error">{{ form_errors(f) }}</div>{% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if app.session.hasFlash('info') %}
+        <div class="mensaje_ok">{{ app.session.getFlash('info') }}</div>
+    {% endif %}
+    {{ form_rest(formulario) }}
+    <p>
+        <button type="submit">GUARDAR</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('usuario_perfil_show') }}">
+            <div>VOLVER</div>
+        </a>
+    </li>
+</ul>
+</div>
+</div>
+{% endblock %} 

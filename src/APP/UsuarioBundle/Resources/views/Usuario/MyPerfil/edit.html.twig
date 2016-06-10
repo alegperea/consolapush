@@ -1,0 +1,31 @@
+{% extends '::backend.html.twig' %}
+
+{#{% form_theme formulario 'CoreBundle:Form:form.html.twig' %}#}
+{% form_theme formulario 'GestionBundle:Form:form_div_layout_ace_default.html.twig' %}
+
+{% block contenido %}
+<div class="page-header">
+    <h1>Editar Perfil</h1>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        {% include ":includes:flashes.html.twig" %}
+        <form class="form-horizontal" novalidate action="{{ path('usuario_updateperfil') }}" method="post" {{ form_enctype(formulario) }}>
+            {{ form_widget(formulario) }}
+                
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <a class="btn btn-prev" href="{{ path('usuario_showperfil') }}">
+                    <i class="icon-arrow-left"></i>
+                    Volver
+                </a>
+                <button class="btn btn-info" type="submit">
+                    <i class="icon-ok bigger-110"></i>
+                    Grabar
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+{% endblock %}

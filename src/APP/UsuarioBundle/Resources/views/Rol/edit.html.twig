@@ -1,0 +1,42 @@
+{% extends '::backend.html.twig' %}
+
+{% block contenido %}
+<div id="contenedor_titulo">
+    <div class="titulo">Editar rol</div>
+</div>
+<div class="records_new">
+<div class="formulario_div">
+    
+{% include ":includes:flashes.html.twig" %}
+
+<form action="{{ path('rol_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <div style="height : auto">
+        <div>{{ form_errors(edit_form) }} </div>
+        {% for f in edit_form %}
+            {% if f.vars.label|trim != 'token' %}
+                <div>{{ form_label(f) }} {{ form_widget(f) }}</div>
+                {% if form_errors(f) %}<div>{{ form_errors(f) }}</div>{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form_rest(edit_form) }}
+        <div class="clear_both"></div>
+    </div>
+    <p>
+        <button type="submit">EDITAR</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('rol') }}">
+            <div>LISTAR</div>
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('rol_delete', { 'id': entity.id }) }}" method="post">
+            <button type="submit">BORRAR</button>
+        </form>
+    </li>
+</ul>
+</div></div>
+{% endblock %}
